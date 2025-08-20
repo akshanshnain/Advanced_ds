@@ -77,11 +77,11 @@ class HashMap
 		arr[hashIndex] = temp; 
 	} 
 	
-	//Function to delete a key value pair 
-	V deleteNode(int key) 
-	{ 
-		// Apply hash function to find index for given key 
-		int hashIndex = hashCode(key); 
+       //Function to delete a key value pair
+       V deleteNode(K key)
+       {
+               // Apply hash function to find index for given key
+               int hashIndex = hashCode(key);
 		
 		//finding the node with given key 
 		while(arr[hashIndex] != NULL) 
@@ -103,31 +103,31 @@ class HashMap
 
 		} 
 		
-		//If not found return null 
-		return NULL; 
-	} 
-	
-	//Function to search the value for a given key 
-	V get(int key) 
-	{ 
-		// Apply hash function to find index for given key 
-		int hashIndex = hashCode(key); 
-		int counter=0; 
-		//finding the node with given key 
-		while(arr[hashIndex] != NULL) 
-		{ int counter =0; 
-			if(counter++>capacity) //to avoid infinite loop 
-				return NULL;		 
-			//if node found return its value 
-			if(arr[hashIndex]->key == key) 
-				return arr[hashIndex]->value; 
-			hashIndex++; 
-			hashIndex %= capacity; 
-		} 
-		
-		//If not found return null 
-		return NULL; 
-	} 
+               //If not found return default value for V
+               return V();
+       }
+
+       //Function to search the value for a given key
+       V get(K key)
+       {
+               // Apply hash function to find index for given key
+               int hashIndex = hashCode(key);
+               int counter = 0;
+               //finding the node with given key
+               while (arr[hashIndex] != NULL)
+               {
+                       if (counter++ > capacity) //to avoid infinite loop
+                               return V();
+                       //if node found return its value
+                       if (arr[hashIndex]->key == key)
+                               return arr[hashIndex]->value;
+                       hashIndex++;
+                       hashIndex %= capacity;
+               }
+
+               //If not found return default value for V
+               return V();
+       }
 	
 	//Return current size 
 	int sizeofMap() 
